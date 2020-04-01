@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Music Emotion Recognition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands"></script>
+</head>
+<body class="d-flex flex-column">
+  <div class="jumbotron text-center">
+  <h1>Music Emotion Recognizer</h1>
+  <p>In real-time!</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Training</h2>
+        <div class="btn-group">
+          <button id="genre1" class="btn btn-default" onmousedown="collect(0)" onmouseup="collect(null)">Happy</button>
+          <button id="genre2" class="btn btn-default" onmousedown="collect(1)" onmouseup="collect(null)">Sad</button>
+          <button id="genre3" class="btn btn-default" onmousedown="collect(2)" onmouseup="collect(null)">Angry</button>
+          <button id="genre4" class="btn btn-default" onmousedown="collect(3)" onmouseup="collect(null)">Joyful</button>
+          <button id="genre5" class="btn btn-default" onmousedown="collect(4)" onmouseup="collect(null)">Solemn</button>
+          <button id="noise" class="btn btn-default" onmousedown="collect(5)" onmouseup="collect(null)">Noise</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <button id="train" class="btn btn-primary" onclick="train()">Train</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Testing</h2>
+        <button id="listen" class="btn btn-primary" onclick="listen()">Listen</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-bordered" id="emotions-table">
+          <tr>
+            <th class="tg-0lax">Emotion</th>
+            <th class="tg-0lax">Value</th>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Happy</td>
+            <td class="tg-0lax">0.0</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Sad</td>
+            <td class="tg-0lax">0.0</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Angry</td>
+            <td class="tg-0lax">0.0</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Joyful</td>
+            <td class="tg-0lax">0.0</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">Solemn</td>
+            <td class="tg-0lax">0.0</td>
+          </tr>
+        </table>
+        <div id="console"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Save Model</h2>
+        <button id="save" class="btn btn-primary" onclick="save()">Save</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Load model</h2>
+        <form>
+          <div class="form-group">
+            <label for="upload-json">Model:</label>
+            <input type="file" class="form-control-file" id="upload-json" name="upload-json">
+          </div>
+          <div class="form-group">
+            <label for="upload-weights">Weights:</label>
+            <input type="file" class="form-control-file" id="upload-weights" name="upload-weights">
+          </div>
+        </form>
+        <button id="load"  class="btn btn-primary" onclick="load()">Load</button>
+      </div>
+    </div>
+  </div>
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; Alex MacLean</small>
+    </div>
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
