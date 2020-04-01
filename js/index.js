@@ -40,7 +40,7 @@ function normalize(x) {
 
 async function train() {
  toggleButtons(false);
- const ys = tf.oneHot(examples.map(e => e.label), 6);
+ const ys = tf.oneHot(examples.map(e => e.label), 4);
  const xsShape = [examples.length, ...INPUT_SHAPE];
  const xs = tf.tensor(flatten(examples.map(e => e.vals)), xsShape);
 
@@ -68,7 +68,7 @@ function buildModel() {
  }));
  model.add(tf.layers.maxPooling2d({poolSize: [1, 2], strides: [2, 2]}));
  model.add(tf.layers.flatten());
- model.add(tf.layers.dense({units: 6, activation: 'softmax'}));
+ model.add(tf.layers.dense({units: 4, activation: 'softmax'}));
  const optimizer = tf.train.adam(0.01);
  model.compile({
    optimizer,
