@@ -92,7 +92,7 @@ async function updateTableValues(predicationData) {
   var table = document.getElementById('emotions-table');
   var i;
   for (i = 1; i < 6; i++) {
-    table.rows[i].cells[1].innerText = predicationData[i-1];
+    table.rows[i].cells[1].innerText = predicationData[i-1].toFixed(3);
     if (parseFloat(table.rows[i].cells[1].innerText) > 0.7) {
       table.rows[i].cells[1].style.backgroundColor = "SeaGreen";
     }
