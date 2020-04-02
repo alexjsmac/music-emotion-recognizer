@@ -44,7 +44,7 @@
           <thead>
             <tr>
               <th scope="col">Emotion</th>
-              <th scope="col">Value</th>
+              <th scope="col">Confidence</th>
             </tr>
           </thead>
           <tbody>
@@ -66,8 +66,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-3">
         <h2>Save Model</h2>
+        <label for="model-name">Model Name:</label>
+        <input type="text" class="form-control" id="model-name" placeholder="my-model">
         <button id="save" class="btn btn-primary" onclick="save()">Save</button>
       </div>
     </div>

@@ -127,8 +127,12 @@ function listen() {
 }
 
 async function save() {
-  var d = new Date().toISOString().slice(0, 19).replace(/-/g, "").replace(/:/g, "");
-  await model.save('downloads://model-' + d);
+  var modelName = document.getElementById('model-name').value;
+  if (modelName == "") {
+    var date = new Date().toISOString().slice(0, 19).replace(/-/g, "").replace(/:/g, "");
+    var modelName = "model-" + date
+  }
+  await model.save('downloads://' + modelName);
   console.log("Model saved");
 }
 
